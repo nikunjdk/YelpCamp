@@ -1,0 +1,25 @@
+{
+  "name": "yelpcamp",
+  "version": "1.0.0",
+  "description": "Project for the course- The Web Developer Bootcamp by Colt Steele",
+  "main": "app.js",
+  "scripts": {
+    "test": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nikunjdk/YelpCamp.git"
+  },
+  "author": "Nikunj Das Kasat",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nikunjdk/YelpCamp/issues"
+  },
+  "homepage": "https://github.com/nikunjdk/YelpCamp#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "ejs": "^3.0.1",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.6"
+  }
+}

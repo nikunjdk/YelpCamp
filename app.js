@@ -1,3 +1,4 @@
+/*jshint esversion: 6 */
 var express = require("express"),
     app = express(),
     bodyParser = require("body-parser"),
@@ -14,15 +15,15 @@ var commentRoutes = require('./routes/comments'),
     campgroundRoutes = require('./routes/campgrounds'),
     indexRoutes = require('./routes/index');
 
-mongoose.connect("mongodb://localhost:27017/yelp_camp", { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect("mongodb://localhost:27017/yelp_camp", { useNewUrlParser: true, useUnifiedTopology: true })
+.then(() => console.log('Connected to Databse'))
+.catch(err => console.err('Could not connect to MongoDB', err));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static(__dirname + "/public"));
 
 app.set("view engine", "ejs");
-
-seedDB();
 
 app.use(require('express-session')({
     secret: "This is a secret...",

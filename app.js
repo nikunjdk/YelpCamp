@@ -5,6 +5,7 @@ var express = require("express"),
     mongoose = require("mongoose"),
     passport = require('passport'),
     LocalStrategy = require('passport-local'),
+    methodOverride = require('method-override'),
     Campground = require("./models/campground"),
     Comment = require("./models/comment"),
     User = require("./models/user"),
@@ -18,8 +19,11 @@ var commentRoutes = require('./routes/comments'),
 mongoose.connect("mongodb://localhost:27017/yelp_camp", { useNewUrlParser: true, useUnifiedTopology: true })
 .then(() => console.log('Connected to Databse'))
 .catch(err => console.err('Could not connect to MongoDB', err));
+mongoose.set('useFindAndModify', false);
 
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(methodOverride("_method"));
 
 app.use(express.static(__dirname + "/public"));
 

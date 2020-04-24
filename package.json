@@ -4,7 +4,8 @@
   "description": "Project for the course- The Web Developer Bootcamp by Colt Steele",
   "main": "app.js",
   "scripts": {
-    "test": "node app.js"
+    "test": "node app.js",
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",

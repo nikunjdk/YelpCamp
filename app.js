@@ -3,6 +3,7 @@ var express = require("express"),
     app = express(),
     bodyParser = require("body-parser"),
     mongoose = require("mongoose"),
+    flash = require('connect-flash'),
     passport = require('passport'),
     LocalStrategy = require('passport-local'),
     methodOverride = require('method-override'),
@@ -29,6 +30,8 @@ app.use(express.static(__dirname + "/public"));
 
 app.set("view engine", "ejs");
 
+app.use(flash());
+
 app.use(require('express-session')({
     secret: "This is a secret...",
     resave: false,
@@ -43,6 +46,8 @@ passport.deserializeUser(User.deserializeUser());
 
 app.use(function(req, res, next) {
     res.locals.currentUser = req.user;
+    res.locals.error = req.flash('error');
+    res.locals.success = req.flash('success');
     next();
 });
 

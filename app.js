@@ -11,15 +11,15 @@ var express = require("express"),
     Comment = require("./models/comment"),
     User = require("./models/user"),
     seedDB = require("./seeds"),
-    port = process.env.PORT || 3000;
+    port = process.env.PORT || 5000;
 
 var commentRoutes = require('./routes/comments'),
     campgroundRoutes = require('./routes/campgrounds'),
     indexRoutes = require('./routes/index');
 
-mongoose.connect("mongodb://localhost:27017/yelp_camp", { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect("mongodb+srv://nikunj:nikunj123@yelpcamp-3hfzr.gcp.mongodb.net/yelp_camp?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true })
 .then(() => console.log('Connected to Databse'))
-.catch(err => console.err('Could not connect to MongoDB', err));
+.catch(err => console.log('Could not connect to MongoDB: ', err));
 mongoose.set('useFindAndModify', false);
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -57,5 +57,5 @@ app.use('/campgrounds', campgroundRoutes);
 app.use('/campgrounds/:id/comments', commentRoutes);
 
 app.listen(port, function () {
-    console.log("Server has started");
+    console.log("Server has started at port: " + port);
 });
